@@ -1,4 +1,4 @@
-#GameOfLife
+﻿#GameOfLife
 
 Davi Rabbouni de Carvalho Freitas - 15/0033010 
 
@@ -14,7 +14,7 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
 
 3) Implementar tabuleiro "infinito";
 
-4) Interface Gráfica (Java Swing);
+4) Interface Gráfica (Java Swing);(Iniciando...)
 
 5) Framework Spring (Injeção dependência)/Reflection (introspecção);
 
