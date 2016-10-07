@@ -19,6 +19,9 @@ public class Conway implements EstrategiaDeDerivacao{
 		return (!engine.cells[i][j].isAlive())
 				&& (engine.numberOfNeighborhoodAliveCells(i, j) == 3);
 	}
-	
+	@Override
+	public string getName(){
+		return "Conway";
+	}
 	
 }

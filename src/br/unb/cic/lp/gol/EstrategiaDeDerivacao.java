@@ -3,6 +3,11 @@ package br.unb.cic.lp.gol;
 
 public interface EstrategiaDeDerivacao {
 	
+	public String getName();
+	/*
+	 * Devolver o nome da regra de derivação 
+	 */
+	
 	public boolean shouldKeepAlive(int i, int j, GameEngine engine);
 	/* Verificar se uma celula na linha i, coluna j deve ser mantida
 	 * viva
