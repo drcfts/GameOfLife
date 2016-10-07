@@ -21,6 +21,10 @@ public class Statistics {
 	public int getRevivedCells() {
 		return revivedCells;
 	}
+	public void setRevivedCells(int revivedCells){
+		this.revivedCells = revivedCells;
+		
+	}
 
 	public void recordRevive() {
 		this.revivedCells++;
@@ -30,10 +34,14 @@ public class Statistics {
 		return killedCells;
 	}
 
+ public void setKilledCells(int killedCells){
+	 this.killedCells = killedCells;
+	 
+ }
 	public void recordKill() {
 		this.killedCells++;
 	}
-	
+// Não é uma boa maneira !!	
 	public void display() {
 		System.out.println("=================================");
 		System.out.println("           Statistics            ");
@@ -42,5 +50,5 @@ public class Statistics {
 		System.out.println("Killed cells: " + killedCells);
 		System.out.println("=================================");
 	}
-
+//
 }

@@ -182,7 +182,31 @@ public class GameEngine {
 	private boolean validPosition(int a, int b) {
 		return a >= 0 && a < height && b >= 0 && b < width;
 	}
+	private int[] setPosition(int a , int b){
+		if(validPosition(a,b)){
+			return new int[]{a,b};
+				
+		}
+		int rA =a;
+		int rB=b;
+		if(a==-1){
+			 rA = height -1;
+		}else if(a== height){
+			rA=0;
+		}
+		if(b==-1){
+			 rB = width -1;
+		}else if(a== width){
+			rB=0;
+		}
+		
+		
+		return new int[]{rA,rB};
+	}
+	
 
+	
+	
 	/* Metodos de acesso as propriedades height e width */
 	
 	public int getHeight() {
