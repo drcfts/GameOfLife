@@ -1,5 +1,5 @@
 package br.unb.cic.lp.gol;
-x	
+	
 public class HighLife extends Conway {
 
 	@Override
@@ -8,7 +8,7 @@ public class HighLife extends Conway {
 				&& (engine.numberOfNeighborhoodAliveCells(i, j) == 3 || engine.numberOfNeighborhoodAliveCells(i, j) == 6);
 	}
 	@Override
-	public string getName(){
+	public String getName(){
 		return "HighLife";
 	}
 	

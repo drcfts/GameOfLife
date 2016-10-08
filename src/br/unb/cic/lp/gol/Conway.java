@@ -20,7 +20,7 @@ public class Conway implements EstrategiaDeDerivacao{
 				&& (engine.numberOfNeighborhoodAliveCells(i, j) == 3);
 	}
 	@Override
-	public string getName(){
+	public String getName(){
 		return "Conway";
 	}
 	
