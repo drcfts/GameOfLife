@@ -1,14 +1,18 @@
 package br.unb.cic.lp.gol.GUI;
 
-//import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
+import br.unb.cic.lp.gol.Statistics;
+import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
 import br.unb.cic.lp.gol.GameController;
 import br.unb.cic.lp.gol.GameEngine;
 /*
  * Bibliotecas do java swing
  */	
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +22,7 @@ public class GameGui{
 	
 	private JFrame tela;	
 	private JPanel matrizTabuleiro;
-	private JButton botoes;
+	private JPanel botoes;
 	private CelulaAct celulas[][];
 	private GameController controller;
 	
@@ -29,7 +33,8 @@ public class GameGui{
 		this.controller=controller;
 		iniciandoTela();
 		preparaTabuleiro();
-		
+		telaBotoes();
+		painelDeBotoes();
 	}
 	/*
 	 * tela padrao , formato padrao que será feito
@@ -46,12 +51,43 @@ public class GameGui{
 	 */
 	private void iniciandoTela(){
 		tela = new JFrame("Game Of Life - Por :Davi,Henrique e Marcos");
+		setLayout(new FlowLayout());
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	/*
-	 * parte do botao errado .... 
+			parte do botao errado .... 
+			System.out.println("Select one of the options: \n \n"); 
+			System.out.println("[1] Make a cell alive");
+			System.out.println("[2] Next generation");
+			System.out.println("[3] Halt");
+			System.out.println("[4] Generate generations automatically");
+		
 	 */
+	private void telaBotoes(){
+		botoes = new JPanel();
+		tela.add(botoes,BorderLayout.EAST);
+	}
+	private void  botoesDeOpcoes(String op,final String opcode){
+		JButton opcao = new JButton(op);
+		opcao.addActionListener( new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				// TODO Auto-generated method stub
+				tela.dispose();
+				controller.getBoard().parseOption(opcode);
+				}
+			
+			
+													});
+	}
+	private void painelDeBotoes(){
+		botoesDeOpcoes("Make a cell alive","1");
+		botoesDeOpcoes("Next Generation","2");
+		botoesDeOpcoes("Halt","3");
+		botoesDeOpcoes("Generate generations automatically","4");
+	}
 	
 	
 	private void preparaTabuleiro(){
@@ -72,3 +108,6 @@ public class GameGui{
 		tela.add(matrizTabuleiro,BorderLayout.CENTER); // poe no centro da tela a matrizTab
 	}
 }
+/*	falta as atualizaçoes da matriz tabulereiro... modificar com a Injeção dependência
+ * 
+ */
