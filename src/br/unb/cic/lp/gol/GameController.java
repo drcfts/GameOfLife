@@ -1,6 +1,7 @@
 package br.unb.cic.lp.gol;
 
 import java.security.InvalidParameterException;
+import java.util.Scanner;
 
 /**
  * Classe que atua como um controlador do 
@@ -59,6 +60,22 @@ public class GameController {
 	public void nextGeneration() {
 		engine.nextGeneration();
 		board.update();
+	}
+	
+	public void computeGenerations(){
+		int generations, i = 0;
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("How many generations to be generated automatically? ");
+		generations = Integer.parseInt(s.nextLine());
+		System.out.println("Computed " + generations + " generations.");
+
+		for(i=0; i<generations; i++){
+			engine.nextGeneration();
+		}
+		board.update();
+		
+		s.close();
 	}
 	
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * Essa implementacao eh nao inifinita, ou seja, nem todas as celulas possuem
  * oito celulas vizinhas. Por exemplo, a celula de coordenada (0,0) possui
- * apenas tres celulas vizinhas, (0,1), (1,0) e (1,1).
+ * apenas tres celulas vizinhas, (0,1), (1,0) e (1,1). (Fixed it!)
  * 
  * Um ambiente eh representado como um array bidimensional de celulas, com
  * altura (height) e comprimento (width).
@@ -163,15 +163,27 @@ public class GameEngine {
 	/*
 	 * Computa o numero de celulas vizinhas vivas, dada uma posicao no ambiente
 	 * de referencia identificada pelos argumentos (i,j).
+	 * A partir da implementação modificada, tem-se que todas as células do tabuleiro 
+	 * possuem 8 vizinhos. Os vizinhos das células da extrema direita se tornam
+	 * as células da extrema esquerda, assim como os vizinhos extremos superiores se tornam 
+	 * as células extremas inferiores.
 	 */
 	public int numberOfNeighborhoodAliveCells(int i, int j) {
 		int alive = 0;
-		for (int a = i - 1; a <= i + 1; a++) {
-			for (int b = j - 1; b <= j + 1; b++) {
+		/* Controle do numero de vizinhos em relacao a linhas e colunas,
+		 * caso o valor dos vizinhos anteriores seja superior aos vizinhos 
+		 * posteriores.
+		 */
+		int contA = 1, contB = 1;
+		
+		for (int a = (height + i - 1)%height; contA <3; contA++) {
+			for (int b = (width + j + contB - 1)%width; contB < 3; contB++) {
 				if (validPosition(a, b)  && (!(a==i && b == j)) && cells[a][b].isAlive()) {
 					alive++;
 				}
+				b = (width + j + contB - 1)%width; //Incremento variavel controle
 			}
+			a = (height + i + contA - 1)%height; //Incremento variavel controle
 		}
 		return alive;
 	}

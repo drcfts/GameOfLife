@@ -1,4 +1,4 @@
-# GameOfLife
+﻿# GameOfLife
 
 Davi Rabbouni de Carvalho Freitas - 15/0033010
 
@@ -10,9 +10,9 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
 
 1) Implementar método Strategy; (OK)
 
-2) Computar próximas gerações automaticamente;
+2) Computar próximas gerações automaticamente; (OK)
 
-3) Implementar tabuleiro "infinito";
+3) Implementar tabuleiro "infinito"; (OK)
 
 4) Interface Gráfica (Java Swing);(Tela default e tabuleiro implementado)
 
