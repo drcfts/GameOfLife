@@ -19,7 +19,11 @@ public class Cell {
 	this.alive = false;
     }
 	
-    public void revive() {
+    public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public void revive() {
 	this.alive = true;
     }
 }

@@ -1,6 +1,7 @@
 package br.unb.cic.lp.gol;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,11 +79,17 @@ public class GameEngine {
 		List<Cell> mustRevive = new ArrayList<Cell>();
 		List<Cell> mustKill = new ArrayList<Cell>();
 		
+		//armazena o "tabuleiro" no conjunto de estados do jogo
 		Cell[][] cellState = new Cell[height][width];
 		
-		cellState = cells.clone();
-		states.addState(cellState);
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				cellState[i][j] = new Cell();
+				cellState[i][j].setAlive(cells[i][j].isAlive());
+			}
+		}
 		
+		states.addState(cellState);
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				if (strategy.shouldRevive(i, j, this)) {
@@ -108,7 +115,7 @@ public class GameEngine {
 	
 	public void restoreGenerations(int generations){
 		try{
-			cells = states.restore(generations);
+			cells = (states.restore(generations));
 		}
 		catch (InvalidParameterException e){
 			cells = new Cell[height][width];

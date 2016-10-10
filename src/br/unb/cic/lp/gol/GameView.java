@@ -102,11 +102,28 @@ public class GameView {
 	}
 	
 	private void computeGenerations(){
-		controller.computeGenerations();
+		int generations;
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("How many generations to be generated automatically? ");
+		generations = Integer.parseInt(s.nextLine());
+		System.out.println("Computed " + generations + " generations.");
+		
+		controller.computeGenerations(generations);
+		
+		s.close();
 	}
 	
 	private void restoreGenerations(){
-		controller.restoreGenerations();
+		int generations;
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("How many generations to be reverted? ");
+		generations = Integer.parseInt(s.nextLine());
+		System.out.println("Restoring " + generations + " generations.");
+		controller.restoreGenerations(generations);
+		
+		s.close();
 	}
 	
 	private boolean validPosition(int i, int j) {

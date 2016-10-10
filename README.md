@@ -18,4 +18,4 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
 
 5) Framework Spring (Injeção dependência)/Reflection (introspecção);
 
-6) Memento: mecanismo de UNDO - desfazer n gerações.
+6) Memento: mecanismo de UNDO - desfazer n gerações. (OK)

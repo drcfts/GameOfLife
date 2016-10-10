@@ -63,34 +63,19 @@ public class GameController {
 		board.update();
 	}
 	
-	public void computeGenerations(){
-		int generations, i = 0;
-		Scanner s = new Scanner(System.in);
+	public void computeGenerations(int generations){
 
-		System.out.println("How many generations to be generated automatically? ");
-		generations = Integer.parseInt(s.nextLine());
-		System.out.println("Computed " + generations + " generations.");
-
-		for(i=0; i<generations; i++){
+		for(int i=0; i<generations; i++){
 			engine.nextGeneration();
 		}
 		board.update();
-		
-		s.close();
 	}
 	
-	public void restoreGenerations(){
-		int generations;
-		Scanner s = new Scanner(System.in);
-
-		System.out.println("How many generations to be reverted? ");
-		generations = Integer.parseInt(s.nextLine());
-		System.out.println("Restoring " + generations + " generations.");
+	public void restoreGenerations(int generations){
 		
 		engine.restoreGenerations(generations);
 		board.update();
 		
-		s.close();
 	}
 	
 }

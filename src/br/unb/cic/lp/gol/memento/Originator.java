@@ -41,7 +41,7 @@ class Originator {
 			state = stateToSave;
 		}
 		
-		private Cell[][] getSavedState(){
+		public Cell[][] getSavedState(){
 			return state;
 		}
 		

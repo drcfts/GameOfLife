@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.security.InvalidParameterException;
 
 /* Acessa apenas o Originator, n possui
- * acesso total ao Memento.
+ * acesso total ao Memento. Serve como "porta"
+ * a classes de outros pacotes que precisam acessar
+ * o Memento.
  */
 
 public class Caretaker {
@@ -26,11 +28,13 @@ public class Caretaker {
 	public void addState(Cell[][] table){
 		originator.setState(table);
 		savedStates.add(originator.saveToMemento());
+		
 	}
 	
 	public Cell[][] restore(int generations) throws InvalidParameterException{
 		int i = 0;
 		int cont;
+		
 		
 		for (i=0; i<generations; i++){
 			cont = savedStates.size() - 1;
