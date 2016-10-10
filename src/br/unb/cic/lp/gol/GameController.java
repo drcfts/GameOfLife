@@ -16,6 +16,7 @@ public class GameController {
 	private GameView board;
 	private Statistics statistics;
 	
+	
 	public GameEngine getEngine() {
 		return engine;
 	}
@@ -73,6 +74,20 @@ public class GameController {
 		for(i=0; i<generations; i++){
 			engine.nextGeneration();
 		}
+		board.update();
+		
+		s.close();
+	}
+	
+	public void restoreGenerations(){
+		int generations;
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("How many generations to be reverted? ");
+		generations = Integer.parseInt(s.nextLine());
+		System.out.println("Restoring " + generations + " generations.");
+		
+		engine.restoreGenerations(generations);
 		board.update();
 		
 		s.close();

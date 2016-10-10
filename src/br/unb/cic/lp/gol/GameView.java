@@ -18,6 +18,7 @@ public class GameView {
 	private static final int NEXT_GENERATION = 2;
 	private static final int HALT = 3; 
 	private static final int N_GENERATIONS = 4;
+	private static final int RESTORE_GENERATIONS = 5;
 
 	private GameEngine engine;
 	private GameController controller;
@@ -58,6 +59,7 @@ public class GameView {
 			System.out.println("[2] Next generation");
 			System.out.println("[3] Halt");
 			System.out.println("[4] Generate generations automatically");
+			System.out.println("[5] Restore generations");
 		
 			System.out.print("\n \n Option: ");
 			
@@ -68,7 +70,8 @@ public class GameView {
 			case MAKE_CELL_ALIVE : makeCellAlive(); break;
 			case NEXT_GENERATION : nextGeneration(); break;
 			case HALT : halt(); break;
-			case N_GENERATIONS : computeGenerations(); 
+			case N_GENERATIONS : computeGenerations(); break;
+			case RESTORE_GENERATIONS : restoreGenerations();
 		}
 	}
 	
@@ -102,6 +105,10 @@ public class GameView {
 		controller.computeGenerations();
 	}
 	
+	private void restoreGenerations(){
+		controller.restoreGenerations();
+	}
+	
 	private boolean validPosition(int i, int j) {
 		System.out.println(i);
 		System.out.println(j);
@@ -120,6 +127,9 @@ public class GameView {
 		}
 		else if(option.equals("4")){
 			return N_GENERATIONS;
+		}
+		else if(option.equals("5")){
+			return RESTORE_GENERATIONS;
 		}
 		else return INVALID_OPTION;
 	}

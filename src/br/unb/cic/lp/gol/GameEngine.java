@@ -4,6 +4,10 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.event.CellEditorListener;
+
+import br.unb.cic.lp.gol.memento.Caretaker;
+
 /**
  * Representa um ambiente (environment) do jogo GameOfLife.
  * 
@@ -21,6 +25,7 @@ public class GameEngine {
 	private int width;
 	protected Cell[][] cells;
 	private Statistics statistics;
+	private Caretaker states;
 	
 	private EstrategiaDeDerivacao strategy;
 	
@@ -37,6 +42,7 @@ public class GameEngine {
 		this.width = width;
 
 		cells = new Cell[height][width];
+		states = new Caretaker();
 
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -71,6 +77,12 @@ public class GameEngine {
 	public void nextGeneration() {
 		List<Cell> mustRevive = new ArrayList<Cell>();
 		List<Cell> mustKill = new ArrayList<Cell>();
+		
+		Cell[][] cellState = new Cell[height][width];
+		
+		cellState = cells.clone();
+		states.addState(cellState);
+		
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				if (strategy.shouldRevive(i, j, this)) {
@@ -90,6 +102,16 @@ public class GameEngine {
 		for (Cell cell : mustKill) {
 			cell.kill();
 			statistics.recordKill();
+		}
+		
+	}
+	
+	public void restoreGenerations(int generations){
+		try{
+			cells = states.restore(generations);
+		}
+		catch (InvalidParameterException e){
+			cells = new Cell[height][width];
 		}
 	}
 	
@@ -168,25 +190,27 @@ public class GameEngine {
 	 * as células da extrema esquerda, assim como os vizinhos extremos superiores se tornam 
 	 * as células extremas inferiores.
 	 */
+	
 	public int numberOfNeighborhoodAliveCells(int i, int j) {
 		int alive = 0;
-		/* Controle do numero de vizinhos em relacao a linhas e colunas,
-		 * caso o valor dos vizinhos anteriores seja superior aos vizinhos 
+		 /* caso o valor dos vizinhos anteriores seja superior aos vizinhos 
 		 * posteriores.
 		 */
-		int contA = 1, contB = 1;
+		int contA = 0, contB = 0;
 		
 		for (int a = (height + i - 1)%height; contA <3; contA++) {
-			for (int b = (width + j + contB - 1)%width; contB < 3; contB++) {
+			contB = 0;
+			for (int b = (width + j - 1)%width; contB < 3; contB++) {
 				if (validPosition(a, b)  && (!(a==i && b == j)) && cells[a][b].isAlive()) {
 					alive++;
 				}
-				b = (width + j + contB - 1)%width; //Incremento variavel controle
+				b = (b+1)%width;				
 			}
-			a = (height + i + contA - 1)%height; //Incremento variavel controle
+			
+			a = (a+1)%height;
 		}
 		return alive;
-	}
+	} 
 
 	/*
 	 * Verifica se uma posicao (a, b) referencia uma celula valida no tabuleiro.
