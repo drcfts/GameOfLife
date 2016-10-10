@@ -51,10 +51,10 @@ public class GameGui{
 	 */
 	private void iniciandoTela(){
 		tela = new JFrame("Game Of Life - Por :Davi,Henrique e Marcos");
-		setLayout(new FlowLayout());
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
 	/*
 			parte do botao errado .... 
 			System.out.println("Select one of the options: \n \n"); 
@@ -107,7 +107,23 @@ public class GameGui{
 	}
 		tela.add(matrizTabuleiro,BorderLayout.CENTER); // poe no centro da tela a matrizTab
 	}
-}
+
 /*	falta as atualizaçoes da matriz tabulereiro... modificar com a Injeção dependência
  * 
  */
+  public void atualizacao(){
+	  GameEngine Eng =controller.getEngine(); 
+	  	for(int i=0;i<Eng.getHeight();i++){
+	  		for(int j=0;j<Eng.getWidth();j++){
+	  				 	if(Eng.isCellAlive(i, j)){
+	  					celulas[i][j].Live();
+	  				 	}else{
+	  				 	celulas[i][j].Kill();		
+	  				         }
+	  				
+	  		}
+	   	}
+	  tela.setVisible(true);
+	  
+  }
+}
