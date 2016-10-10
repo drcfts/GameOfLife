@@ -114,8 +114,12 @@ public class GameView {
 		System.out.println(j);
 		return i >= 0 && i < engine.getHeight() && j >= 0 && j < engine.getWidth();
 	}
-
-	private int parseOption(String option) {
+/*
+ * 
+ * mudei a visibilidade do parseOption para modificar la no gameGUI
+ */
+	
+	public int parseOption(String option) {
 		if(option.equals("1")) {
 			return MAKE_CELL_ALIVE;
 		}

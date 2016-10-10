@@ -3,6 +3,7 @@ package br.unb.cic.lp.gol.GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import br.unb.cic.lp.gol.GameEngine;
@@ -18,7 +19,7 @@ public class CelulaAct extends JButton implements ActionListener {
 	
 	private GameEngine engine;
 
-
+	ImageIcon vivo,morto;
 	/*
 	 * construtor do botao da celula
 	 */
@@ -27,7 +28,9 @@ public class CelulaAct extends JButton implements ActionListener {
 		this.alt =alt;
 		this.larg =larg;
 		this.engine =eng;
-		// falta botar as imagens referente a vivo e morto
+		vivo = new ImageIcon(this.getClass().getResource("imagens/verde.png")); 
+		morto = new ImageIcon(this.getClass().getResource("imagens/vermelho.png")); 
+		
 	}
 	/*
 	 * Açoes da celula morrer e viver(criar)
@@ -36,21 +39,26 @@ public class CelulaAct extends JButton implements ActionListener {
 	
 	public void Kill(){
 	setAlive(false);
+	setIcon(morto);
 	}
 
 	public void Live(){
 	setAlive(true);
+	setIcon(vivo);	
 	}
 	
 	
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		engine.makeCellAlive(alt,larg);
 		
 		if(Alive){
-			//tornar life vivo 
+			setIcon(vivo);
+			
 			
 		}else{
-			// tornar life dead
+			
+			setIcon(morto);
+			// pintar vermelho tornar life dead
 		}
 		
 		

@@ -14,7 +14,7 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
 
 3) Implementar tabuleiro "infinito"; (OK)
 
-4) Interface Gráfica (Java Swing);(Tela default e tabuleiro implementado)
+4) Interface Gráfica (Java Swing);(faltando apenas a atualização)
 
 5) Framework Spring (Injeção dependência)/Reflection (introspecção);
 
