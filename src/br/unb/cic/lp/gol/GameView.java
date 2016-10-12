@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
+import br.unb.cic.lp.gol.regras.ListaDeRegras;
+
 
 
 /**
@@ -28,9 +30,9 @@ public class GameView {
 	private static final int MAKE_CELL_ALIVE = 1;
 	private static final int NEXT_GENERATION = 2;
 	private static final int REGRAS = 3; 
-	private static final int HALT = 4; 
-	private static final int N_GENERATIONS = 5;
-	private static final int RESTORE_GENERATIONS = 6;
+	private static final int HALT = 99; 
+	private static final int N_GENERATIONS = 4;
+	private static final int RESTORE_GENERATIONS = 5;
 
 	private GameEngine engine;
 	private GameController controller;
@@ -49,37 +51,17 @@ public class GameView {
 	 * possivelmente como uma resposta a uma atualizacao do jogo.
 	 */
 	public void update() {
-		printFirstRow();
-		printLine();
-		for (int i = 0; i < engine.getHeight(); i++) {
-			for (int j = 0; j < engine.getWidth(); j++) {
-				System.out.print(engine.isCellAlive(i, j) ? ALIVE_CELL : DEAD_CELL);
-			}
-			System.out.println("   " + i);
-			printLine();
-		}
-		printOptions();
+		controller.getGui().atualizacao();
 	}
 
-	private void printOptions() {
-		Scanner s = new Scanner(System.in);
+	public void printOptions(String valor) {
 		int option;
 		System.out.println("\n \n");
 		
 		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
 		
 		do {
-			System.out.println("Select one of the options: \n \n"); 
-			System.out.println("[1] Make a cell alive");
-			System.out.println("[2] Next generation");
-			System.out.println("[3] Regras");
-			System.out.println("[4] Halt");
-			System.out.println("[5] Generate generations automatically");
-			System.out.println("[6] Restore generations");
-		
-			System.out.print("\n \n Option: ");
-			
-			option = parseOption(s.nextLine());
+			option = parseOption(valor);
 		}while(option == 0);
 		
 		switch(option) {
@@ -89,10 +71,10 @@ public class GameView {
 				
 				List<String> string = new ArrayList<String>();
 				
-				ApplicationContext xml = new FileSystemXmlApplicationContext("/home/henrique/Documentos/GoL/src/br/unb/cic/lp/gol/spring.xml");
+				ApplicationContext xml = new FileSystemXmlApplicationContext("spring.xml");
 				ListaDeRegras lista = (ListaDeRegras) xml.getBean("listaderegras");
 				
-				for(EstrategiaDeDerivacao regrax: lista.getListaderegras()){ 
+				for(EstrategiaDeDerivacao regrax: lista.getLista()){ 
 					teste = regrax.getName();
 					string.add(teste);
 				 }
@@ -102,6 +84,7 @@ public class GameView {
 					     null); 
 
 				 EstrategiaDeDerivacao strategy = (EstrategiaDeDerivacao)factory.getBean(input);
+				 
 				 engine.setStrategy(strategy); 
 				 update(); break;
 			
@@ -179,14 +162,17 @@ public class GameView {
 		else if (option.equals("2")) {
 			return NEXT_GENERATION;
 		}
-		else if (option.equals("3")) {
-			return HALT;
+		else if (option.equals("3")){
+			return REGRAS;
 		}
 		else if(option.equals("4")){
 			return N_GENERATIONS;
 		}
 		else if(option.equals("5")){
 			return RESTORE_GENERATIONS;
+		}
+		else if (option.equals("99")) {
+			return HALT;
 		}
 		else return INVALID_OPTION;
 	}

@@ -1,4 +1,6 @@
-package br.unb.cic.lp.gol;
+package br.unb.cic.lp.gol.regras;
+
+import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
 import br.unb.cic.lp.gol.GameEngine;
 
 

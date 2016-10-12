@@ -3,6 +3,8 @@ package br.unb.cic.lp.gol;
 import java.security.InvalidParameterException;
 import java.util.Scanner;
 
+import br.unb.cic.lp.gol.GUI.GameGui;
+
 /**
  * Classe que atua como um controlador do 
  * padrao MVC, separando os componentes da 
@@ -15,8 +17,17 @@ public class GameController {
 	private GameEngine engine;
 	private GameView board;
 	private Statistics statistics;
+	private GameGui gui;
 	
 	
+	public GameGui getGui() {
+		return gui;
+	}
+
+	public void setGui(GameGui gui) {
+		this.gui = gui;
+	}
+
 	public GameEngine getEngine() {
 		return engine;
 	}
@@ -38,6 +49,7 @@ public class GameController {
 	}
 	
 	public void start() {
+		gui.telapadrao();
 		board.update();
 	}
 	

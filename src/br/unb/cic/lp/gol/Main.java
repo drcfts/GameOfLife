@@ -1,6 +1,8 @@
 package br.unb.cic.lp.gol;
 
 import java.util.Scanner;
+import br.unb.cic.lp.gol.GUI.GameGui;
+
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -8,14 +10,16 @@ import org.springframework.core.io.FileSystemResource;
 public class Main {
 
 	public static void main(String args[]) {
+		
 		GameController controller = new GameController();
-		Scanner scan = new Scanner(System.in);
 		Statistics statistics = new Statistics();
-		GameEngine engine = new GameEngine(10, 10, statistics);	
+		GameEngine engine = new GameEngine(40, 40, statistics);	
 		
 		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
-		EstrategiaDeDerivacao HighLife =(EstrategiaDeDerivacao)factory.getBean("HighLife");
-		engine.setStrategy(HighLife);
+		EstrategiaDeDerivacao Conway =(EstrategiaDeDerivacao)factory.getBean("conway");
+		
+		/* estrategia inicial */
+		engine.setStrategy(Conway);
 		
 		GameView board = new GameView(controller, engine);
 		
@@ -23,6 +27,9 @@ public class Main {
 		controller.setEngine(engine);
 		controller.setStatistics(statistics);
 		
+		GameGui gui = new GameGui(controller);
+		
+		controller.setGui(gui);
 		controller.start();
 	}
 }

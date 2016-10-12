@@ -12,7 +12,7 @@ import br.unb.cic.lp.gol.GameEngine;
  *  Implementa action listener 
  */
 public class CelulaAct extends JButton implements ActionListener {
-	private boolean Alive; // booleano que diz se a celula está viva nao 
+	private boolean Alive; // booleano que diz se a celula esta viva ou nao 
 	//matriz[alt][larg]
 	public int alt; 
 	public int larg;
@@ -33,7 +33,7 @@ public class CelulaAct extends JButton implements ActionListener {
 		
 	}
 	/*
-	 * Açoes da celula morrer e viver(criar)
+	 * Aï¿½oes da celula morrer e viver(criar)
 	 * 
 	 */
 	

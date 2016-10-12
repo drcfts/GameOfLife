@@ -4,6 +4,7 @@ import br.unb.cic.lp.gol.Statistics;
 import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
 import br.unb.cic.lp.gol.GameController;
 import br.unb.cic.lp.gol.GameEngine;
+
 /*
  * Bibliotecas do java swing
  */	
@@ -37,11 +38,11 @@ public class GameGui{
 		painelDeBotoes();
 	}
 	/*
-	 * tela padrao , formato padrao que será feito
+	 * tela padrao , formato padrao que sera feito
 	 */
 	
 	public void telapadrao(){
-		tela.setSize(500,500);
+		tela.setSize(560,560);
 		tela.setResizable(false);
 		tela.setVisible(true);
 			
@@ -50,8 +51,9 @@ public class GameGui{
 	 * Cria a tela "Game of Life" e default close para fechar
 	 */
 	private void iniciandoTela(){
-		tela = new JFrame("Game Of Life - Por :Davi,Henrique e Marcos");
+		tela = new JFrame("Game Of Life - Por: Davi,Henrique e Marcos");
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tela.setLayout(new BorderLayout());
 		
 	}
 	
@@ -66,8 +68,9 @@ public class GameGui{
 	 */
 	private void telaBotoes(){
 		botoes = new JPanel();
-		tela.add(botoes,BorderLayout.EAST);
+		tela.add(botoes,BorderLayout.NORTH);
 	}
+	
 	private void  botoesDeOpcoes(String op,final String opcode){
 		JButton opcao = new JButton(op);
 		opcao.addActionListener( new ActionListener(){
@@ -76,7 +79,7 @@ public class GameGui{
 			public void actionPerformed(ActionEvent event) {
 				// TODO Auto-generated method stub
 				tela.dispose();
-				controller.getBoard().parseOption(opcode);
+				controller.getBoard().printOptions(opcode);
 				}
 			
 			
@@ -85,8 +88,10 @@ public class GameGui{
 	private void painelDeBotoes(){
 		botoesDeOpcoes("Make a cell alive","1");
 		botoesDeOpcoes("Next Generation","2");
-		botoesDeOpcoes("Halt","3");
+		botoesDeOpcoes("Rules","3");
 		botoesDeOpcoes("Generate generations automatically","4");
+		botoesDeOpcoes("Restore generations","5");
+		botoesDeOpcoes("Halt","99");
 	}
 	
 	
@@ -108,11 +113,12 @@ public class GameGui{
 		tela.add(matrizTabuleiro,BorderLayout.CENTER); // poe no centro da tela a matrizTab
 	}
 
-/*	falta as atualizaçoes da matriz tabulereiro... modificar com a Injeção dependência
+/*	falta as atualizaï¿½oes da matriz tabuleiro... modificar com a Injecao de dependencia
  * 
  */
   public void atualizacao(){
 	  GameEngine Eng =controller.getEngine(); 
+	  
 	  	for(int i=0;i<Eng.getHeight();i++){
 	  		for(int j=0;j<Eng.getWidth();j++){
 	  				 	if(Eng.isCellAlive(i, j)){

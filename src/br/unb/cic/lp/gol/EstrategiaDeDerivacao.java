@@ -5,7 +5,7 @@ public interface EstrategiaDeDerivacao {
 	
 	public String getName();
 	/*
-	 * Devolver o nome da regra de derivação 
+	 * Devolver o nome da regra de derivacao 
 	 */
 	
 	public boolean shouldKeepAlive(int i, int j, GameEngine engine);
