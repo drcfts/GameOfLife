@@ -2,22 +2,22 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
-	<bean id="highlife" class="br.unb.cic.lp.gol.regras.HighLife" />
-	<bean id="conway" class="br.unb.cic.lp.gol.regras.Conway" />
-	<bean id="livefreeordie" class="br.unb.cic.lp.gol.regras.LiveFreeOrDie" />
-	<bean id="dayandnight" class="br.unb.cic.lp.gol.regras.DayAndNight" />
-	<bean id="seeds" class="br.unb.cic.lp.gol.regras.Seeds" />
-	<bean id="replicator" class="br.unb.cic.lp.gol.regras.Replicator" />
+	<bean id="HighLife" class="br.unb.cic.lp.gol.regras.HighLife" scope="prototype"/>
+	<bean id="Conway" class="br.unb.cic.lp.gol.regras.Conway" scope="prototype"/>
+	<bean id="LiveFreeOrDie" class="br.unb.cic.lp.gol.regras.LiveFreeOrDie" scope="prototype"/>
+	<bean id="DayAndNight" class="br.unb.cic.lp.gol.regras.DayAndNight" scope="prototype"/>
+	<bean id="Seeds" class="br.unb.cic.lp.gol.regras.Seeds" scope="prototype"/>
+	<bean id="Replicator" class="br.unb.cic.lp.gol.regras.Replicator" scope="prototype"/>
 	
 	<bean id="listaderegras" class="br.unb.cic.lp.gol.regras.ListaDeRegras" scope="prototype">
-		<property name="EstrategiaDeDerivacao">	
+		<property name="lista">	
 			<list>	
-				<ref bean="highlife" />
-				<ref bean="conway" />
-				<ref bean="livefreeordie" />
-				<ref bean="dayandnight" />
-				<ref bean="seeds" />
-				<ref bean = "replicator"/>
+				<ref bean="HighLife" />
+				<ref bean="Conway" />
+				<ref bean="LiveFreeOrdie" />
+				<ref bean="DayandNight" />
+				<ref bean="Seeds" />
+				<ref bean = "Replicator"/>
 			</list>
 		</property>
 	</bean>	

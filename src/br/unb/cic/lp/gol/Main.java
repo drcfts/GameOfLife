@@ -16,7 +16,7 @@ public class Main {
 		GameEngine engine = new GameEngine(40, 40, statistics);	
 		
 		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
-		EstrategiaDeDerivacao Conway =(EstrategiaDeDerivacao)factory.getBean("conway");
+		EstrategiaDeDerivacao Conway =(EstrategiaDeDerivacao)factory.getBean("Conway");
 		
 		/* estrategia inicial */
 		engine.setStrategy(Conway);

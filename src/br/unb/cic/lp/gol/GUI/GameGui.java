@@ -15,9 +15,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JDialog;
 
 public class GameGui{
 	
@@ -42,7 +44,7 @@ public class GameGui{
 	 */
 	
 	public void telapadrao(){
-		tela.setSize(560,560);
+		tela.setSize(720,640);
 		tela.setResizable(false);
 		tela.setVisible(true);
 			
@@ -51,6 +53,7 @@ public class GameGui{
 	 * Cria a tela "Game of Life" e default close para fechar
 	 */
 	private void iniciandoTela(){
+		
 		tela = new JFrame("Game Of Life - Por: Davi,Henrique e Marcos");
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setLayout(new BorderLayout());
@@ -82,14 +85,14 @@ public class GameGui{
 				controller.getBoard().printOptions(opcode);
 				}
 			
-			
 													});
+		botoes.add(opcao);
 	}
 	private void painelDeBotoes(){
 		botoesDeOpcoes("Make a cell alive","1");
 		botoesDeOpcoes("Next Generation","2");
 		botoesDeOpcoes("Rules","3");
-		botoesDeOpcoes("Generate generations automatically","4");
+		botoesDeOpcoes("Auto Generate","4");
 		botoesDeOpcoes("Restore generations","5");
 		botoesDeOpcoes("Halt","99");
 	}
