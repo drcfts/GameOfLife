@@ -1,6 +1,17 @@
 package br.unb.cic.lp.gol;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import javax.swing.*;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.core.io.FileSystemResource;
+
+
 
 /**
  * Atua como um componente de apresentacao (view), exibindo o estado atual do
@@ -16,12 +27,14 @@ public class GameView {
 	private static final int INVALID_OPTION = 0;
 	private static final int MAKE_CELL_ALIVE = 1;
 	private static final int NEXT_GENERATION = 2;
-	private static final int HALT = 3; 
-	private static final int N_GENERATIONS = 4;
-	private static final int RESTORE_GENERATIONS = 5;
+	private static final int REGRAS = 3; 
+	private static final int HALT = 4; 
+	private static final int N_GENERATIONS = 5;
+	private static final int RESTORE_GENERATIONS = 6;
 
 	private GameEngine engine;
 	private GameController controller;
+	String teste;
 
 	/**
 	 * Construtor da classe GameBoard
@@ -53,13 +66,16 @@ public class GameView {
 		int option;
 		System.out.println("\n \n");
 		
+		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
+		
 		do {
 			System.out.println("Select one of the options: \n \n"); 
 			System.out.println("[1] Make a cell alive");
 			System.out.println("[2] Next generation");
-			System.out.println("[3] Halt");
-			System.out.println("[4] Generate generations automatically");
-			System.out.println("[5] Restore generations");
+			System.out.println("[3] Regras");
+			System.out.println("[4] Halt");
+			System.out.println("[5] Generate generations automatically");
+			System.out.println("[6] Restore generations");
 		
 			System.out.print("\n \n Option: ");
 			
@@ -69,6 +85,26 @@ public class GameView {
 		switch(option) {
 			case MAKE_CELL_ALIVE : makeCellAlive(); break;
 			case NEXT_GENERATION : nextGeneration(); break;
+			case REGRAS :
+				
+				List<String> string = new ArrayList<String>();
+				
+				ApplicationContext xml = new FileSystemXmlApplicationContext("/home/henrique/Documentos/GoL/src/br/unb/cic/lp/gol/spring.xml");
+				ListaDeRegras lista = (ListaDeRegras) xml.getBean("listaderegras");
+				
+				for(EstrategiaDeDerivacao regrax: lista.getListaderegras()){ 
+					teste = regrax.getName();
+					string.add(teste);
+				 }
+				
+				 String input = (String) JOptionPane.showInputDialog(null, "Choose now...",
+						 "Escolha a regra:", JOptionPane.QUESTION_MESSAGE, null, string.toArray(),
+					     null); 
+
+				 EstrategiaDeDerivacao strategy = (EstrategiaDeDerivacao)factory.getBean(input);
+				 engine.setStrategy(strategy); 
+				 update(); break;
+			
 			case HALT : halt(); break;
 			case N_GENERATIONS : computeGenerations(); break;
 			case RESTORE_GENERATIONS : restoreGenerations();

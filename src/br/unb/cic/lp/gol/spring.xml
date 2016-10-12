@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="highlife" class="br.unb.cic.lp.gol.HighLife" />
+	<bean id="conway" class="br.unb.cic.lp.gol.Conway" />
+	
+	<bean id="listaderegras" class="br.unb.cic.lp.gol.ListaDeRegras" scope="prototype">
+		<property name="EstrategiaDeDerivacao">	
+			<list>	
+				<ref bean="highlife" />
+				<ref bean="conway" />
+			</list>
+		</property>
+	</bean>	
+</beans>
