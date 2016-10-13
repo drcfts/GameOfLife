@@ -13,13 +13,15 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JDialog;
+import javax.swing.Timer;
 
 public class GameGui{
 	
@@ -134,5 +136,43 @@ public class GameGui{
 	   	}
 	  tela.setVisible(true);
 	  
+	  
   }
+  
+  public void atualizacaoInfinita(){
+	  // apagar botoes
+	  botoes.setVisible(false);
+	  JPanel controle = new JPanel();
+	  tela.add(controle,BorderLayout.SOUTH);
+	  final JButton pausa = new JButton("Pausa");
+	  
+	  controle.add(pausa);
+	  // Acoes a ser executadas com o tempo setado pelo timer
+	  ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				atualizacao();
+				controller.getBoard().printOptions("2");
+			}    
+	  };
+	  final Timer timer = new Timer(500, actionListener);
+	  timer.setInitialDelay(0);
+	  // Comeca a executar acoes com tempo de 0.5s entre elas
+	  timer.start();	
+	  // Cria acao de pausar e mostrar de volta o menu
+	  pausa.addActionListener( new ActionListener(){
+		  
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				timer.stop();
+				pausa.setVisible(false);
+				botoes.setVisible(true);
+				
+			}
+	  
+});
+	  
+	  
+  }
+  
+
 }

@@ -53,10 +53,13 @@ public class GameView {
 	public void update() {
 		controller.getGui().atualizacao();
 	}
+	
+	public void updateLoop(){
+		controller.getGui().atualizacaoInfinita();
+	}
 
 	public void printOptions(String valor) {
 		int option;
-		System.out.println("\n \n");
 		
 		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
 		
@@ -95,17 +98,16 @@ public class GameView {
 	}
 	
 	private void makeCellAlive() {
+		String row, column;
 		int i, j = 0;
 		Scanner s = new Scanner(System.in);
 		
 		do {
-			System.out.print("\n Inform the row number (0 - " + engine.getHeight() + "): " );
+			row = (String) JOptionPane.showInputDialog("Inform the row number (0 - " + engine.getHeight() + "): ");			
+			i = Integer.parseInt(row);
 			
-			i = s.nextInt();
-			
-			System.out.print("\n Inform the column number (0 - " + engine.getWidth() + "): " );
-			
-			j = s.nextInt();
+			column = (String) JOptionPane.showInputDialog("Inform the column number (0 - " + engine.getWidth() + "): ");			
+			j = Integer.parseInt(column);
 		}while(!validPosition(i,j));
 		
 		controller.makeCellAlive(i, j);
@@ -113,7 +115,7 @@ public class GameView {
 	}
 	
 	private void nextGeneration() {
-		controller.nextGeneration();
+		controller.nextGeneration(false);
 	}
 	
 	private void halt() {
@@ -121,28 +123,19 @@ public class GameView {
 	}
 	
 	private void computeGenerations(){
-		int generations;
-		Scanner s = new Scanner(System.in);
-
-		System.out.println("How many generations to be generated automatically? ");
-		generations = Integer.parseInt(s.nextLine());
-		System.out.println("Computed " + generations + " generations.");
-		
-		controller.computeGenerations(generations);
-		
-		s.close();
+		controller.nextGeneration(true);		
 	}
 	
 	private void restoreGenerations(){
+		String input;
 		int generations;
-		Scanner s = new Scanner(System.in);
-
-		System.out.println("How many generations to be reverted? ");
-		generations = Integer.parseInt(s.nextLine());
-		System.out.println("Restoring " + generations + " generations.");
+		
+		input = (String) JOptionPane.showInputDialog("How many generations to be reverted? ");
+		generations = Integer.parseInt(input);
+		JOptionPane.showMessageDialog(null, "Restoring " + generations + " generations.");
+		
 		controller.restoreGenerations(generations);
 		
-		s.close();
 	}
 	
 	private boolean validPosition(int i, int j) {

@@ -70,19 +70,27 @@ public class GameController {
 		}
 	}
 	
-	public void nextGeneration() {
+	public void nextGeneration(boolean loop) {
 		engine.nextGeneration();
-		board.update();
-	}
-	
-	public void computeGenerations(int generations){
-
-		for(int i=0; i<generations; i++){
-			engine.nextGeneration();
+		
+//		caso seja geracao automatica
+		if(loop){
+			board.updateLoop();
 		}
-		board.update();
+//		se for apenas uma geracao
+		else{
+			board.update();
+		}
 	}
 	
+//	public void computeGenerations(int generations){
+//
+//		for(int i=0; i<generations; i++){
+//			engine.nextGeneration();
+//		}
+//		board.update();
+//	}
+//	
 	public void restoreGenerations(int generations){
 		
 		engine.restoreGenerations(generations);
