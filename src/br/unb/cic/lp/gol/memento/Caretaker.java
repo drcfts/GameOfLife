@@ -3,7 +3,6 @@ package br.unb.cic.lp.gol.memento;
 import java.util.List;
 
 import br.unb.cic.lp.gol.Cell;
-import br.unb.cic.lp.gol.memento.Originator.Memento;
 
 import java.util.ArrayList;
 import java.security.InvalidParameterException;

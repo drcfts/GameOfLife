@@ -1,7 +1,6 @@
 package br.unb.cic.lp.gol;
 
 import java.security.InvalidParameterException;
-import java.util.Scanner;
 
 import br.unb.cic.lp.gol.GUI.GameGui;
 

@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="GUI"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring4.3.3"/>
-	<classpathentry kind="lib" path="SpringLib/Regras.jar"/>
+	<classpathentry kind="lib" path="libs/regrasJogo.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

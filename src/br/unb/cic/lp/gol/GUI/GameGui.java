@@ -1,7 +1,6 @@
 package br.unb.cic.lp.gol.GUI;
 
-import br.unb.cic.lp.gol.Statistics;
-import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
+
 import br.unb.cic.lp.gol.GameController;
 import br.unb.cic.lp.gol.GameEngine;
 
@@ -10,10 +9,8 @@ import br.unb.cic.lp.gol.GameEngine;
  */	
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 
 

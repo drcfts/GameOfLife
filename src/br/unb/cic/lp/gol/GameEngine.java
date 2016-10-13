@@ -1,11 +1,8 @@
 package br.unb.cic.lp.gol;
 
 import java.security.InvalidParameterException;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.event.CellEditorListener;
 
 import br.unb.cic.lp.gol.memento.Caretaker;
 
