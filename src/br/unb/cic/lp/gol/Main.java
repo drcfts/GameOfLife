@@ -1,6 +1,5 @@
 package br.unb.cic.lp.gol;
 
-import java.util.Scanner;
 import br.unb.cic.lp.gol.GUI.GameGui;
 
 import org.springframework.beans.factory.BeanFactory;

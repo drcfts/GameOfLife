@@ -48,6 +48,10 @@ public class GameController {
 		this.statistics = statistics;
 	}
 	
+	public Statistics getStatistics() {
+		return statistics;
+	}
+
 	public void start() {
 		gui.telapadrao();
 		board.update();

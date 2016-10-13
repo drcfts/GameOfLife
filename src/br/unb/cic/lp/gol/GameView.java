@@ -119,7 +119,7 @@ public class GameView {
 	}
 	
 	private void halt() {
-		controller.halt();
+		controller.getGui().halt();
 	}
 	
 	private void computeGenerations(){
