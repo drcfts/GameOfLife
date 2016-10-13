@@ -120,12 +120,15 @@ public class GameGui{
   }
   
   public void atualizacaoInfinita(){
-	  botoes.setVisible(false);
+	 
+	  botoes.setVisible(false); //Torna os botes do menu principal invisiveis
 	  JPanel controle = new JPanel();
 	  tela.add(controle,BorderLayout.SOUTH);
-	  final JButton pausa = new JButton("Pausa");
+	  final JButton pausa = new JButton("Pause"); //Cria um botao que ira pausar o loop
 	  
 	  controle.add(pausa);
+	  
+	  // Definicao das acoes a serem executadas pelo timer
 	  ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				atualizacao();
@@ -135,6 +138,8 @@ public class GameGui{
 	  final Timer timer = new Timer(500, actionListener);
 	  timer.setInitialDelay(0);
 	  timer.start();	
+	  
+	  //Definicao das acoes executadas pelo botao de pausa
 	  pausa.addActionListener( new ActionListener(){
 		  
 			@Override
@@ -148,6 +153,13 @@ public class GameGui{
 });
 	  
 	  
+  }
+  
+  //Funcao halt a ser executada no GUI
+  public void halt() {
+	  JOptionPane.showMessageDialog(null,"Revived cells: " + controller.getStatistics().getRevivedCells() + 
+			  "\nKilled cells: " + controller.getStatistics().getKilledCells());
+	  System.exit(0);
   }
   
 
