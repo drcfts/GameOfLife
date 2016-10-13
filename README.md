@@ -32,4 +32,5 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
 ###Instruções de execução (Utilizando a IDE *Eclipse*):
 * Adicionar as bibliotecas presentes na pasta *GameOfLife/libs* ao projeto na IDE.
 * Utilizar a *JRE System Library [JavaSE-1.8]*.
+
 #FIM DE PÔJETO
