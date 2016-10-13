@@ -31,9 +31,6 @@ public class GameGui{
 	private CelulaAct celulas[][];
 	private GameController controller;
 	
-	/*
-	 * Constrotutor GameGUI que recebe um tipo de jogo (controler)  e inicia a tela
-	 */
 	public GameGui(GameController controller){ 
 		this.controller=controller;
 		iniciandoTela();
@@ -41,9 +38,6 @@ public class GameGui{
 		telaBotoes();
 		painelDeBotoes();
 	}
-	/*
-	 * tela padrao , formato padrao que sera feito
-	 */
 	
 	public void telapadrao(){
 		tela.setSize(720,640);
@@ -51,9 +45,7 @@ public class GameGui{
 		tela.setVisible(true);
 			
 	}
-	/*
-	 * Cria a tela "Game of Life" e default close para fechar
-	 */
+	
 	private void iniciandoTela(){
 		
 		tela = new JFrame("Game Of Life - Por: Davi,Henrique e Marcos");
@@ -61,16 +53,7 @@ public class GameGui{
 		tela.setLayout(new BorderLayout());
 		
 	}
-	
-	/*
-			parte do botao errado .... 
-			System.out.println("Select one of the options: \n \n"); 
-			System.out.println("[1] Make a cell alive");
-			System.out.println("[2] Next generation");
-			System.out.println("[3] Halt");
-			System.out.println("[4] Generate generations automatically");
-		
-	 */
+
 	private void telaBotoes(){
 		botoes = new JPanel();
 		tela.add(botoes,BorderLayout.NORTH);
@@ -118,10 +101,7 @@ public class GameGui{
 		tela.add(matrizTabuleiro,BorderLayout.CENTER); // poe no centro da tela a matrizTab
 	}
 
-/*	falta as atualiza�oes da matriz tabuleiro... modificar com a Injecao de dependencia
- * 
- */
-  public void atualizacao(){
+ public void atualizacao(){
 	  GameEngine Eng =controller.getEngine(); 
 	  
 	  	for(int i=0;i<Eng.getHeight();i++){
@@ -140,14 +120,12 @@ public class GameGui{
   }
   
   public void atualizacaoInfinita(){
-	  // apagar botoes
 	  botoes.setVisible(false);
 	  JPanel controle = new JPanel();
 	  tela.add(controle,BorderLayout.SOUTH);
 	  final JButton pausa = new JButton("Pausa");
 	  
 	  controle.add(pausa);
-	  // Acoes a ser executadas com o tempo setado pelo timer
 	  ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				atualizacao();
@@ -156,9 +134,7 @@ public class GameGui{
 	  };
 	  final Timer timer = new Timer(500, actionListener);
 	  timer.setInitialDelay(0);
-	  // Comeca a executar acoes com tempo de 0.5s entre elas
 	  timer.start();	
-	  // Cria acao de pausar e mostrar de volta o menu
 	  pausa.addActionListener( new ActionListener(){
 		  
 			@Override

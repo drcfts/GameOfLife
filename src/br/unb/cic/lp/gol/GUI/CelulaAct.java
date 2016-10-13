@@ -8,21 +8,15 @@ import javax.swing.JButton;
 
 import br.unb.cic.lp.gol.GameEngine;
 
-/*
- *  Implementa action listener 
- */
 public class CelulaAct extends JButton implements ActionListener {
-	private boolean Alive; // booleano que diz se a celula esta viva ou nao 
-	//matriz[alt][larg]
+	private boolean Alive;  
 	public int alt; 
 	public int larg;
 	
 	private GameEngine engine;
 
 	ImageIcon vivo,morto;
-	/*
-	 * construtor do botao da celula
-	 */
+	
 	public	CelulaAct(int alt , int larg,GameEngine eng){
 		addActionListener(this);
 		this.alt =alt;
@@ -32,10 +26,6 @@ public class CelulaAct extends JButton implements ActionListener {
 		morto = new ImageIcon(this.getClass().getResource("imagens/vermelho.png")); 
 		
 	}
-	/*
-	 * A�oes da celula morrer e viver(criar)
-	 * 
-	 */
 	
 	public void Kill(){
 	setAlive(false);
@@ -58,7 +48,6 @@ public class CelulaAct extends JButton implements ActionListener {
 		}else{
 			
 			setIcon(morto);
-			// pintar vermelho tornar life dead
 		}
 		
 		
