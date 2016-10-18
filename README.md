@@ -1,5 +1,6 @@
 ﻿# Game Of Life
-###Projeto 1 Técnicas de Programação 1 ministrada pelo professor Rodrigo Bonifácio
+###Projeto 1
+##Técnicas de Programação 1 ministrada pelo professor Rodrigo Bonifácio
 ###2/2016
 #####Alunos 
 
@@ -28,6 +29,8 @@ Marcos Vinícius Prescendo Tonin - 14/0153233
     
 * Memento: mecanismo de UNDO
      Para o fazer o memento foi salvo os estados anteriores em uma lista auxiliar, após feito isso foi criado a funcionalidade *UNDO*, que desfaz *n* gerações.
+     
+* Observação:    As bibliotecas GoL.jar e regras.jar são fundamentais na realização plena do objetivo apresentado, pois permite a divisão do programa entre o *Core* e as *regras*, as quais podem ser adicionadas - ou modificadas - como contribuições por outros usuários.    
      
 ###Instruções de execução (Utilizando a IDE *Eclipse*):
 * Adicionar as bibliotecas presentes na pasta *GameOfLife/libs* ao projeto na IDE.
